@@ -5,6 +5,7 @@ eryu-dynamic-web-publisher,core,local,eryu-skills,,,skills/eryu-dynamic-web-publ
 dida-feishu-light-sync,core,local,eryu-skills,,,skills/dida-feishu-light-sync,all
 github-kb,core,local,eryu-skills,,,skills/github-kb,all
 eryu-task-writeback,core,local,eryu-skills,,,skills/eryu-task-writeback,all
+model-subagent-router,core,local,eryu-skills,,,skills/model-subagent-router,all
 frontend-slides,core,git,frontend-slides,https://github.com/zarazhangrui/frontend-slides.git,main,.,all
 image-assistant,content,git,yunshu-skillshub,https://github.com/yunshu0909/yunshu_skillshub.git,master,image-assistant,all
 lesson-builder,content,git,yunshu-skillshub,https://github.com/yunshu0909/yunshu_skillshub.git,master,lesson-builder,all

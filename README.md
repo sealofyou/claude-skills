@@ -26,7 +26,7 @@ bash install.sh core
 
 | Profile | 内容 |
 | --- | --- |
-| `core` | 尔玉分享工坊、尔玉短视频工坊、动态网页路由、滴答飞书轻量巡检、任务状态回写、GitHub 知识库、Frontend Slides |
+| `core` | 尔玉分享工坊、尔玉短视频工坊、动态网页路由、滴答飞书轻量巡检、任务状态回写、指定模型子 Agent 路由、GitHub 知识库、Frontend Slides |
 | `content` | 写作、思维挖掘、配图、课程、视频笔记和批量生图 |
 | `slides` | gpt-image2-ppt 与 Guizang 专项路线 |
 | `design` | UI/UX Pro Max |
