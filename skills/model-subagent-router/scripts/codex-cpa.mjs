@@ -79,6 +79,14 @@ export function childEnvironment(env = process.env) {
   return Object.fromEntries(Object.entries(env).filter(([key]) => allowed.has(key.toUpperCase())));
 }
 
+export function runtimeEnvironment(outDir, key, env = process.env) {
+  const profile = path.join(outDir, 'runtime-profile');
+  const runtime = { ...childEnvironment(env), HOME: profile, USERPROFILE: profile,
+    CODEX_HOME: path.join(profile, '.codex'), APPDATA: path.join(profile, 'AppData', 'Roaming'),
+    LOCALAPPDATA: path.join(profile, 'AppData', 'Local'), CPA_SUBAGENT_API_KEY: key };
+  return runtime;
+}
+
 export function terminateChild(child, platform = process.platform, spawnProcess = spawn) {
   if (!child.pid) return;
   const fallback = () => { try { child.kill('SIGKILL'); } catch {} };
@@ -137,11 +145,13 @@ export async function run(options, provider, model) {
   const stderrFile = path.join(outDir, 'stderr.txt');
   const resultFile = path.join(outDir, 'result.json');
   for (const file of [stdoutFile, stderrFile, resultFile]) if (fs.existsSync(file)) throw new Error('Output files already exist; use a new out-dir.');
+  const runtimeEnv = runtimeEnvironment(outDir, provider.key);
+  for (const dir of [runtimeEnv.CODEX_HOME, runtimeEnv.APPDATA, runtimeEnv.LOCALAPPDATA]) fs.mkdirSync(dir, { recursive: true });
   // Logs stay local; redact the actual key even if an upstream error echoes it.
   let stdout = '', stderr = '', timedOut = false, processError, terminationFailed = false, forcedTimer;
   const child = spawn(executable.command, [...executable.prefix, ...args], {
     cwd, shell: false, windowsHide: true, detached: process.platform !== 'win32',
-    env: { ...childEnvironment(), CPA_SUBAGENT_API_KEY: provider.key }, stdio: ['pipe', 'pipe', 'pipe'],
+    env: runtimeEnv, stdio: ['pipe', 'pipe', 'pipe'],
   });
   child.stdout.setEncoding('utf8'); child.stderr.setEncoding('utf8');
   child.stdout.on('data', data => { stdout += data; });

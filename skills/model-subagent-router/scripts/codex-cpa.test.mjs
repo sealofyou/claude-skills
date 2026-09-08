@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { EventEmitter } from 'node:events';
-import { scalar, resolveModel, validateProvider, buildArgs, loadProvider, childEnvironment, parseEvents, terminateChild } from './codex-cpa.mjs';
+import { scalar, resolveModel, validateProvider, buildArgs, loadProvider, childEnvironment, runtimeEnvironment, parseEvents, terminateChild } from './codex-cpa.mjs';
 
 test('normalization preserves version and meaningful suffixes', () => {
   assert.equal(resolveModel('grok4.6', ['grok-4.6']), 'grok-4.6');
@@ -27,6 +27,14 @@ test('CLI keeps sandbox and no credential in argv', () => {
 test('unrelated credentials are removed from child environment', () => {
   const env = childEnvironment({ Path: 'bin', SystemRoot: 'Windows', TEMP: 'temp', CODEX_HOME: 'config', AWS_SECRET_ACCESS_KEY: 'secret', GITHUB_TOKEN: 'secret', PRIVATE_FOO: 'secret', NODE_OPTIONS: '--require untrusted.js' });
   assert.deepEqual(env, { Path: 'bin', SystemRoot: 'Windows', TEMP: 'temp', CODEX_HOME: 'config' });
+});
+test('runtime profile does not inherit host configuration discovery paths', () => {
+  const env = runtimeEnvironment('task-output', 'test-key', { HOME: 'host-home', USERPROFILE: 'host-profile', CODEX_HOME: 'host-codex', APPDATA: 'host-appdata', LOCALAPPDATA: 'host-local', PATH: 'bin', GITHUB_TOKEN: 'private' });
+  assert.ok(env.CODEX_HOME.includes('runtime-profile'));
+  assert.equal(env.HOME, env.USERPROFILE);
+  assert.ok(!Object.values(env).some(value => value.startsWith('host-')));
+  assert.equal(env.GITHUB_TOKEN, undefined);
+  assert.equal(env.CPA_SUBAGENT_API_KEY, 'test-key');
 });
 test('JSONL completion distinguishes output, errors and tool evidence', () => {
   const parsed = parseEvents('noise\n' + [
