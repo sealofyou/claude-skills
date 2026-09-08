@@ -1,0 +1,6 @@
+interface:
+  display_name: "尔玉 Codex 子 Agent 路由"
+  short_description: "在 Codex 中按指定模型委派任务，明确指令优先，默认先用原生子 Agent"
+  default_prompt: "使用 $eryu-codex-subagent-router，让 grok4.6 子 Agent 帮我审查指定文件，优先使用当前软件。"
+policy:
+  allow_implicit_invocation: true

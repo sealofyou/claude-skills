@@ -26,7 +26,7 @@ bash install.sh core
 
 | Profile | 内容 |
 | --- | --- |
-| `core` | 尔玉分享工坊、尔玉短视频工坊、动态网页路由、滴答飞书轻量巡检、任务状态回写、指定模型子 Agent 路由、GitHub 知识库、Frontend Slides |
+| `core` | 尔玉分享工坊、尔玉短视频工坊、动态网页路由、滴答飞书轻量巡检、任务状态回写、Codex 指定模型子 Agent 路由、GitHub 知识库、Frontend Slides |
 | `content` | 写作、思维挖掘、配图、课程、视频笔记和批量生图 |
 | `slides` | gpt-image2-ppt 与 Guizang 专项路线 |
 | `design` | UI/UX Pro Max |
@@ -71,3 +71,6 @@ git pull --ff-only
 不要提交 API key、token、密码、OAuth 文件、cookie、私钥、`.env`、数据库、日志、浏览器状态和生成产物。个人 Skill 只保存读取私有上下文的规则，不保存私有正文和凭据。
 
 审计记录见 `docs/skill-audit-2026-07-15.md` 和 `docs/skill-audit-2026-07-27.md`。
+
+
+`eryu-codex-subagent-router` 原名 `model-subagent-router`，现明确面向 Codex 主控。已有旧版的机器升级时，确认没有本机自改后移除旧名称的安装目录，避免重复发现；不把本机重命名当成其他机器已迁移。

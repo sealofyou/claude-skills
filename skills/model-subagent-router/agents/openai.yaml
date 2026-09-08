@@ -1,6 +1,0 @@
-interface:
-  display_name: "指定模型子 Agent"
-  short_description: "按指定模型委派任务，明确指令优先，默认先用当前软件的子 Agent"
-  default_prompt: "使用 $model-subagent-router，让 grok4.6 子 Agent 帮我审查指定文件，优先使用当前软件。"
-policy:
-  allow_implicit_invocation: true

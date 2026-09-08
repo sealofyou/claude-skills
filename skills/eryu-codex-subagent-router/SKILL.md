@@ -1,11 +1,13 @@
 ---
-name: model-subagent-router
-description: 当用户要求使用子 Agent、子任务委派、指定 Grok/Gemini/Kimi 等模型协作，或明确指定 Grok Build、Gemini CLI、Kimi Code 时使用。明确指令优先；否则先用当前软件原生子 Agent，再核实同软件 CLI，最后才用模型配套的本机 Agent。普通模型问答不触发执行。
+name: eryu-codex-subagent-router
+description: 在 Codex 中按用户指定的模型委派子 Agent，包括 Grok、Gemini、Kimi 或明确指定的 Grok Build、Gemini CLI、Kimi Code。明确指令优先；默认先 Codex 原生子 Agent，再 Codex CLI，最后才用模型配套 CLI。当前实现与验证针对 Codex 主控，不作为 Kimi Code 等其他主控的通用路由。
 ---
 
-# 指定模型子 Agent 路由
+# 尔玉 Codex 子 Agent 路由
 
 把用户交给子 Agent 的任务交到正确的模型和执行器，并把结果带回当前会话。保持主 Agent 的模型、思考强度和全局配置不变。
+
+本 Skill 面向 Codex 主控。配套 CLI 命令可被其他 Agent 参考，辅助脚本也能由具备命令执行能力的工具启动，但这不等于已适配其他软件的原生子 Agent 或自动 Skill 发现。尚未验证 Kimi Code 主控下“一句话调用 Grok”的完整链路；其他主控不要默认套用下文的 Codex 优先顺序。
 
 ## 按用户指定程度选择
 
