@@ -1,0 +1,18 @@
+# 已停用/已删除的来源行（安装脚本只读 skills.sources.csv，本文件仅为留档）
+# 2026-09-09 裁决，依据：eryuOS 12_迁移计划/IDX-20260909-001_skills仓库盘点与保留裁决清单.md
+#
+# 以下 8 行来自 yunshu_skillshub：用户没怎么用过，先停用，之后单独再审：
+name,profile,kind,cache_key,repo,ref,subpath,platform
+image-assistant,content,git,yunshu-skillshub,https://github.com/yunshu0909/yunshu_skillshub.git,master,image-assistant,all
+lesson-builder,content,git,yunshu-skillshub,https://github.com/yunshu0909/yunshu_skillshub.git,master,lesson-builder,all
+prd-doc-writer,content,git,yunshu-skillshub,https://github.com/yunshu0909/yunshu_skillshub.git,master,prd-doc-writer,all
+project-map-builder,content,git,yunshu-skillshub,https://github.com/yunshu0909/yunshu_skillshub.git,master,project-map-builder,all
+req-change-workflow,content,git,yunshu-skillshub,https://github.com/yunshu0909/yunshu_skillshub.git,master,req-change-workflow,all
+thought-mining,content,git,yunshu-skillshub,https://github.com/yunshu0909/yunshu_skillshub.git,master,thought-mining,all
+version-planner,content,git,yunshu-skillshub,https://github.com/yunshu0909/yunshu_skillshub.git,master,version-planner,all
+writing-assistant,content,git,yunshu-skillshub,https://github.com/yunshu0909/yunshu_skillshub.git,master,writing-assistant,all
+#
+# 以下 3 行 2026-09-09 裁决为删除（功能与自写 skill 重叠或不再使用）：
+gpt-image2-ppt-skills,slides,git,gpt-image2-ppt-skills,https://github.com/JuneYaooo/gpt-image2-ppt-skills.git,main,.,all
+guizang-ppt-skill,slides,git,guizang-ppt-skill,https://github.com/op7418/guizang-ppt-skill.git,main,.,all
+codebase-to-course,content,git,codebase-to-course,https://github.com/zarazhangrui/codebase-to-course.git,main,.,all
